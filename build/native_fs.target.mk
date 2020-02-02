@@ -4,11 +4,20 @@ TOOLSET := target
 TARGET := native_fs
 DEFS_Debug := \
 	'-DNODE_GYP_MODULE_NAME=native_fs' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-DV8_DEPRECATION_WARNINGS' \
+	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
+	'-D__STDC_FORMAT_MACROS' \
+	'-DOPENSSL_NO_PINSHARED' \
+	'-DOPENSSL_THREADS' \
 	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
-	'-D_DEBUG'
+	'-D_DEBUG' \
+	'-DV8_ENABLE_CHECKS'
 
 # Flags passed to all source files.
 CFLAGS_Debug := \
@@ -28,18 +37,30 @@ CFLAGS_C_Debug :=
 CFLAGS_CC_Debug := \
 	-fno-rtti \
 	-fno-exceptions \
-	-std=gnu++0x
+	-std=gnu++1y
 
 INCS_Debug := \
-	-I/home/patrick/.node-gyp/5.1.0/include/node \
-	-I/home/patrick/.node-gyp/5.1.0/src \
-	-I/home/patrick/.node-gyp/5.1.0/deps/uv/include \
-	-I/home/patrick/.node-gyp/5.1.0/deps/v8/include
+	-I/home/zb/.cache/node-gyp/13.7.0/include/node \
+	-I/home/zb/.cache/node-gyp/13.7.0/src \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/openssl/config \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/openssl/openssl/include \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/uv/include \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/zlib \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/v8/include \
+	-I$(srcdir)/node_modules/nan
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=native_fs' \
+	'-DUSING_UV_SHARED=1' \
+	'-DUSING_V8_SHARED=1' \
+	'-DV8_DEPRECATION_WARNINGS=1' \
+	'-DV8_DEPRECATION_WARNINGS' \
+	'-DV8_IMMINENT_DEPRECATION_WARNINGS' \
 	'-D_LARGEFILE_SOURCE' \
 	'-D_FILE_OFFSET_BITS=64' \
+	'-D__STDC_FORMAT_MACROS' \
+	'-DOPENSSL_NO_PINSHARED' \
+	'-DOPENSSL_THREADS' \
 	'-DBUILDING_NODE_EXTENSION'
 
 # Flags passed to all source files.
@@ -51,8 +72,6 @@ CFLAGS_Release := \
 	-Wno-unused-parameter \
 	-m64 \
 	-O3 \
-	-ffunction-sections \
-	-fdata-sections \
 	-fno-omit-frame-pointer
 
 # Flags passed to only C files.
@@ -62,13 +81,17 @@ CFLAGS_C_Release :=
 CFLAGS_CC_Release := \
 	-fno-rtti \
 	-fno-exceptions \
-	-std=gnu++0x
+	-std=gnu++1y
 
 INCS_Release := \
-	-I/home/patrick/.node-gyp/5.1.0/include/node \
-	-I/home/patrick/.node-gyp/5.1.0/src \
-	-I/home/patrick/.node-gyp/5.1.0/deps/uv/include \
-	-I/home/patrick/.node-gyp/5.1.0/deps/v8/include
+	-I/home/zb/.cache/node-gyp/13.7.0/include/node \
+	-I/home/zb/.cache/node-gyp/13.7.0/src \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/openssl/config \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/openssl/openssl/include \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/uv/include \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/zlib \
+	-I/home/zb/.cache/node-gyp/13.7.0/deps/v8/include \
+	-I$(srcdir)/node_modules/nan
 
 OBJS := \
 	$(obj).target/$(TARGET)/main.o
